@@ -4,7 +4,7 @@ ___
 ## Overview
 
 
-The "FightClubProject SB + JS" project is a Spring Boot web application that demonstrates controlled access to resources based on the user role, using the example of a fight club manager. In this project, users ("FIGHTERS") can identify themselves in the system, and an administrator ("PROMOTER") can manage their data. Account validation is done through email.
+The "FightClubProject SB + JS" project is a Spring Boot web application that demonstrates controlled access to resources based on the user role, using the example of a Fight Club manager. In this project, users ("FIGHTERS") can identify themselves in the system, and an administrator ("PROMOTER") can manage their data. Account validation is done through email.
 
 To test the project, start it in a local environment and open the link in your browser: http://localhost:8080.
 ___
@@ -35,7 +35,7 @@ ___
 
 #### 4. controller:
 - *MainController:* Handles HTTP requests related to the main part of the project, such as registration, login, verification, and user validation.
-- *registerNewUser:* Registers a new user, generates a verification code, and sends an email with a request for verification.
+- *registerNewUser:* Registers a new user, generates a verification code, and sends an email requesting verification.
 - *verifyUser:* Verifies a user based on the provided verification code.
 - *AdminController:* Handles administrator operations and CRUD functionality.
 ___
@@ -48,9 +48,9 @@ ___
 - *SuccessUserHandler:* Custom authentication success handler that redirects users to the /fight-club page.
 
 #### 6. resources/templates:
-- *view-main-page.html:* The main HTML template for the user interface. Contains a navigation bar, a user table, and a modal window for adding, editing, and deleting users.
+- *view-main-page.html:* The main HTML template for the user interface. It contains a navigation bar, a user table, and a modal window for adding, editing and deleting users.
 - *Navbar:* Includes navigation links and an exit option. Also implemented here is a ***"marquee"*** strip.
-- *Sidebar:* Shows tabs for fighter and promoter.
+- *Sidebar:* Shows tabs for fighters and promoters.
 - *Admin Panel:* Includes tabs for viewing all users and performing CRUD operations.
 - *Modal windows:* Display user details and provide for CRUD operations.
 ___
@@ -76,7 +76,7 @@ ___
 - ***Java 11:*** The main programming language for both server and client parts of the project.
 - ***Maven:*** Used to manage project dependencies and ensure its efficient build.
 - ***Spring:*** Used to create a web application, provide security, and interact with a database.
-- ***Spring Boot:*** Simplify the development of web applications on Spring and provides ready-made components such as Spring MVC and Spring Security.
+- ***Spring Boot:*** Simplifies the development of web applications on Spring and provides ready-made components such as Spring MVC and Spring Security.
 - ***Spring MVC:*** Used to create web applications with the MVC architecture.
 - ***Spring Security:*** Provides web application security through authentication.
 - ***MySQL:*** Used to store project data, such as user profiles in a relational database.
