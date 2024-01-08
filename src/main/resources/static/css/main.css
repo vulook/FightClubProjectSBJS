@@ -1,0 +1,70 @@
+/* main.css */
+
+body.login-page {
+    background-image: url('../img/fight-club-1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+.bg-custom {
+    background: linear-gradient(to left, #000, #2c3e50, #e74c3c, #bdc3c7);
+}
+
+.navbar-brand {
+    height: 1cm;
+    max-height: 1cm;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    max-width: 9%;
+    height: auto;
+    margin-right: 10px;
+}
+
+.spacer {
+    margin: 0 10px;
+}
+
+.button-tab {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-tab:hover {
+    background-color: #f0f0f0;
+}
+
+.button-tab:active {
+    background-color: #d9d9d9;
+}
+
+.marquee-container-login {
+    position: relative;
+    width: 35%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-container-authenticated {
+    overflow: hidden;
+    white-space: nowrap;
+    position: absolute;
+    left: 65%;
+    right: 5%
+}
+
+.marquee {
+    color: #f8dcab;
+    display: inline-block;
+    animation: marqueeAnimation 40s linear infinite;
+}
+
+@keyframes marqueeAnimation {
+    0% {transform: translateX(100%);}
+    50% {transform: translateX(0%);}
+    100% {transform: translateX(-100%);}
+}

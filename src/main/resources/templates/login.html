@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap and jQuery -->
+<<<<<<< HEAD
+    <link rel="stylesheet" type="text/css" th:href="@{'/css/main.css'}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{'/webjars/bootstrap/5.2.3/css/bootstrap.min.css'}"/>
+
+=======
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css"/>
+>>>>>>> 1ce38dd (Initial commit)
+
+    <title>Login</title>
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-custom" th:fragment="header">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="/img/fight-club-emblem.jpg" alt="Fight Club Logo" class="logo img-fluid">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="marquee-container-login">
+            <div class="marquee">
+                FIGHT CLUB PROJECT (SB+JS) ― а task for the Java Developer course from CyberBionic Systematics. Join our community of warriors and enthusiasts.
+            </div>
+        </div>
+    </div>
+</nav>
+
+<br/>
+<br/>
+<br/>
+
+<div class="container">
+    <div class="row">
+
+        <!-- Information messages -->
+        <div class="row col-md-5 mx-auto">
+            <div th:if="${param.error}">
+                <div class="alert alert-danger" style="text-align: center;">
+                    Invalid NickName or Password.
+                </div>
+            </div>
+
+            <div th:if="${param.logout}">
+                <div class="alert alert-success" style="text-align: center;">
+                    You have been logged out.
+                </div>
+            </div>
+
+            <div th:if="${verificationSuccess}">
+                <div class="alert alert-success" role="alert" style="text-align: center;">
+                    <strong>Congratulations,</strong><br>
+                    your account has been verified!
+                </div>
+            </div>
+
+            <div th:if="${verificationError}">
+                <div class="alert alert-danger" role="alert" style="text-align: center;">
+                    <p>
+                        <strong>Verification failed!</strong><br>
+                        <span th:text="${verificationError}"></span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">
+                        Login Form
+                    </h2>
+                </div>
+
+                <div class="card-body">
+                    <form method="post" th:action="@{/login}" class="form-horizontal" role="form">
+
+                        <!-- Input for username -->
+                        <div class="mb-3">
+                            <label for="username" class="control-label"><strong>NickName:</strong></label>
+                            <input type="text"
+                                   id="username"
+                                   name="username"
+                                   class="form-control"
+                                   placeholder="Enter NickName"
+                            />
+                        </div>
+
+                        <!-- Input for password -->
+                        <div class="mb-3">
+                            <label for="password" class="control-label"><strong>Password:</strong></label>
+                            <input type="password"
+                                   id="password"
+                                   name="password"
+                                   class="form-control"
+                                   placeholder="Enter Password"
+                            />
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary mb-3">Sign in</button>
+                            <span> Not registered?
+                            <a th:href="@{/registration}"> Register here</a>
+                        </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<<<<<<< HEAD
+    <div>
+        <a th:href="${serverURL}" class="btn btn-info" style="float: right; margin-right: 0;">
+            Users from server: <span th:text="${portServer}"></span>
+        </a><br><br>
+        <a th:href="${internalURL}" class="btn btn-info" style="float: right; margin-right: 0;">
+            Users from server: <span th:text="${portAnother}"></span>
+        </a><br><br>
+        <a th:href="${internalGetURL}" class="btn btn-info" style="float: right; margin-right: 0;">
+            Get Users from server: <span th:text="${portServer}"></span>
+        </a>
+    </div>
+
+</div>
+
+<!-- Include JS library -->
+<script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+
+=======
+</div>
+
+>>>>>>> 1ce38dd (Initial commit)
+</body>
+</html>

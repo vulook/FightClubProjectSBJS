@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap and jQuery -->
+<<<<<<< HEAD
+    <link rel="stylesheet" type="text/css" th:href="@{'/css/main.css'}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{'/webjars/bootstrap/5.2.3/css/bootstrap.min.css'}"/>
+=======
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css"/>
+>>>>>>> 1ce38dd (Initial commit)
+
+    <title>User Info</title>
+
+</head>
+
+<body>
+<div>
+    <!-- HEADER -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-custom fixed-top" th:fragment="header">
+        <div class="container-fluid">
+            <a href="#" id="info" class="navbar-brand"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="marquee-container-authenticated">
+                <div class="marquee">
+                    Welcome to the Fight Club! The legendary "Fight Club": 86 fighters, 224 battles, and a prize fund of 250 thousand dollars –
+                    where every moment is an explosion of adrenaline and sports excitement!
+                </div>
+            </div>
+
+            <a class="font-weight-bold text-decoration" th:href="@{/logout}" th:method="POST">Logout</a>
+
+        </div>
+    </nav>
+
+    <!-- NAVBAR -->
+    <div class="container-fluid pt-5">
+        <div class="row">
+            <!-- SIDEBAR -->
+            <div class="col-1 px-0 pt-2">
+                <ul class="nav flex-column nav-pills border-0" id="myTab" role="tablist">
+
+                    <li class="nav-item text-left" role="presentation" sec:authorize="hasAuthority('ADMIN')">
+                        <a class="nav-link button-tab" id="admin-tab" data-bs-toggle="pill" data-bs-target="#admin"
+                           role="cell" aria-controls="admin" aria-selected="false">PROMOTER</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link button-tab" id="user-tab" data-bs-toggle="pill" data-bs-target="#user"
+                           role="cell" aria-controls="user" aria-selected="false">FIGHTER</a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <div class="tab-content col-11 vh-100 bg-light pt-3">
+                <!-- Admin Data Display -->
+                <div class="tab-pane" id="admin" role="tabpanel" aria-labelledby="admin-tab">
+                    <h1 class="pb-4 ps-3">Promoter Profile Information</h1>
+                    <div class="container-fluid ps-3">
+                        <div>
+                            <ul class="nav nav-tabs">
+
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link active button-tab" id="alluser-tab" data-bs-toggle="tab"
+                                       data-bs-target="#alluser" role="tab" aria-controls="alluser"
+                                       aria-selected="true">Users Table</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link button-tab" id="adduser-tab" data-bs-toggle="tab"
+                                       data-bs-target="#adduser" role="tab" aria-controls="adduser"
+                                       aria-selected="false">New User</a>
+                                </li>
+
+                            </ul>
+
+                            <!-- Tab Panes -->
+                            <div class="tab-content">
+                                <!-- All Users -->
+                                <div class="tab-pane active" id="alluser" role="tabpanel"
+                                     aria-labelledby="alluser-tab" tabindex="0">
+                                    <div class="border-dark text-bg-light rounded-top">
+                                        <h5 class="p-3 m-0">All Users</h5>
+                                    </div>
+                                    <div class="border-1 bg-white p-4 rounded-bottom">
+                                        <table class="table table-dark table-hover" id="tableUsers">
+                                            <thead>
+                                            <tr class="border-top align-middle" style="height: 50px">
+                                                <th scope="col">ID</th>
+                                                <th scope="col">NickName</th>
+                                                <th scope="col">BirthDate</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Role</th>
+                                                <th scope="col">Edit</th>
+                                                <th scope="col">Delete</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Add User -->
+                                <div class="tab-pane" id="adduser" role="tabpanel" aria-labelledby="adduser-tab" tabindex="0">
+                                    <div>
+                                        <div class="border-dark text-bg-light rounded-top">
+                                            <h5 class="p-3 m-0">Add New User</h5>
+                                        </div>
+                                        <div class="border-1 col-md-4 bg-white p-4 rounded-bottom">
+                                            <div class="container">
+                                                <form id="formAddUser">
+
+                                                    <!-- Nickname Input -->
+                                                    <div class="form-group mb-3">
+                                                        <label class="form-label"><strong>NickName:</strong></label>
+                                                        <label for="username"></label>
+                                                        <input class="form-control"
+                                                               id="username"
+                                                               name="addUsername"
+                                                               placeholder="Enter NickName"
+                                                               type="text"
+                                                        />
+                                                    </div>
+
+                                                    <!-- BirthDate Input -->
+                                                    <div class="form-group mb-3">
+                                                        <label class="form-label"><strong>Birth
+                                                            Date:</strong></label><br/>
+                                                        <small class="form-text text-muted">
+                                                            To register, you must be at least 18 years old.
+                                                        </small>
+                                                        <label for="birthDate"></label>
+                                                        <input class="form-control"
+                                                               id="birthDate"
+                                                               name="addBirthDate"
+                                                               placeholder="Enter birth Date"
+                                                               type="date"
+                                                        />
+                                                    </div>
+
+                                                    <!-- Email Input -->
+                                                    <div class="form-group mb-3">
+                                                        <label class="form-label"><strong>Email:</strong></label>
+                                                        <label for="email"></label>
+                                                        <input class="form-control"
+                                                               id="email"
+                                                               name="addEmail"
+                                                               placeholder="Enter email address"
+                                                               type="email"
+                                                        />
+                                                    </div>
+
+                                                    <!-- Password Input -->
+                                                    <div class="form-group mb-3">
+                                                        <label class="form-label"><strong>Password:</strong></label>
+                                                        <label for="password"></label>
+                                                        <input class="form-control"
+                                                               id="password"
+                                                               name="addPassword"
+                                                               placeholder="Enter password"
+                                                               type="password"
+                                                        />
+                                                    </div>
+
+                                                    <!-- Role Input -->
+                                                    <div class="form-group mb-3">
+                                                        <label class="form-label"><strong>Roles:</strong></label>
+                                                        <label for="Inputrole"></label>
+                                                        <select class="form-control" multiple
+                                                                id="Inputrole"
+                                                                name="roles"
+                                                                required="required">
+                                                            <option value="ADMIN">ADMIN</option>
+                                                            <option selected="selected" value="USER">FIGHTER</option>
+                                                        </select>
+                                                    </div>
+                                                    <div>
+                                                        <input class="btn btn-warning btn-block col-md-12"
+                                                               type="submit" id="addNewUser" value="Add New User">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  User Data Display -->
+                <div class="tab-pane" id="user" role="tabpanel" aria-labelledby="user-tab">
+                    <h1 class="pb-4 ps-3">Fighter Profile Information</h1>
+                    <div class="container-fluid ps-3">
+                        <div class="border-dark text-bg-light rounded-top">
+                            <h5 class="p-3 m-0">About Fighter</h5>
+                        </div>
+                        <div class="border-1 bg-white p-4 rounded-bottom">
+<<<<<<< HEAD
+                            <table class="table table-dark table-hover" id="tableUser">
+=======
+                            <table class="table table-dark table-hover " id="tableUser">
+>>>>>>> 1ce38dd (Initial commit)
+                                <thead>
+                                <tr class="border-top align-middle" style="height: 50px">
+                                    <th scope="col">ID</th>
+                                    <th scope="col">NickName</th>
+                                    <th scope="col">BirthDate</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Role</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODAL -->
+            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-custom">
+                            <h5 class="modal-title m" id="modalTitle"></h5>
+                            <button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="modal-body"></div>
+                        <div class="modal-footer" id="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include view.js for general JavaScript functionality MAIN-PAGE -->
+<script type="text/javascript" th:src="@{js/view.js}" src="../static/js/view.js"></script>
+
+<!-- Include get.js for handling GET requests -->
+<script type="text/javascript" th:src="@{js/get.js}" src="../static/js/get.js"></script>
+
+<!-- Include post.js for handling POST requests -->
+<script type="text/javascript" th:src="@{js/post.js}" src="../static/js/post.js"></script>
+
+<!-- Include put.js for handling PUT requests -->
+<script type="text/javascript" th:src="@{js/update.js}" src="../static/js/update.js"></script>
+
+<!-- Include delete.js for handling DELETE requests -->
+<script type="text/javascript" th:src="@{js/delete.js}" src="../static/js/delete.js"></script>
+
+<!-- Include JS library -->
+<script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/2.11.7/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

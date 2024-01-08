@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Email Verification</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="header" style="margin-bottom: 10px;">
+        <img src="https://famfonts.com/wp-content/uploads/fight-club-wide.png" alt="Fight Club Logo" style="width: 100px;">
+    </div>
+
+    <div class="content">
+        <p>
+            Greetings, Warrior <strong th:text="${user.username}"></strong>!<br>
+            Welcome to Fight Club!<br>
+            To activate your account, click the button below. ⚡
+        </p>
+
+        <a th:href="${verificationUrl}" style="color: #fff; background-color: #000; padding: 10px 20px; border-radius: 5px; display: inline-block;">VERIFY NOW</a>
+
+        <p class="info">
+            This verification link is valid until: <strong th:text="${expiryTimeVerificationCode}"></strong>.<br>
+            If you didn't request this, feel free to ignore. <br>
+        </p>
+    </div>
+
+    <div class="footer" style="background-color: #333; color: #fff; padding: 10px; position: fixed; width: calc(100% - 20px);">
+        <p th:utext="${signature + 'All rights reserved &copy; 2023'}" style="margin: 0;"></p>
+    </div>
+
+</div>
+
+</body>
+</html>

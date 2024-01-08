@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap and jQuery -->
+    <link id="cssLink" rel="stylesheet" type="text/css"/>
+    <link id="bootstrapLink" rel="stylesheet" type="text/css"/>
+
+    <title>Users</title>
+</head>
+
+<body>
+<div class="container">
+
+    <h2 class="mt-4 mb-4">Users from server:<span id="portServer"></span>, fetched from server:<span id="portInternal"></span> with RestTemplate</h2>
+
+    <!-- Button -->
+    <button id="getUsersBtn" class="mb-1 btn btn-info">Get Users</button>
+
+    <!-- Error Message -->
+    <div id="errorMessage" class="alert alert-danger" style="text-align: center; display:none;"></div>
+
+    <!-- RestTemplate table -->
+    <div class="border bg-white rounded-bottom">
+        <table class="table table-hover" id="tableUsers">
+            <thead class="table-dark">
+            <tr class="border-top align-middle" style="height: 50px">
+                <th>ID</th>
+                <th>NickName</th>
+                <th>BirthDate</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+            </thead>
+
+            <tbody id="usersData">
+            <!-- User data is inserted here -->
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+<script>
+
+        // Fetches and displays the server port
+        async function displayServerPort() {
+            try {
+                const portValue = document.getElementById('portServer');
+                const response = await fetch('/internal/port-server');
+                portValue.innerText = response.ok ? await response.text() : 'Failed to fetch';
+
+            } catch (error) {
+                displayError(error);
+                console.error('Error:', error);
+                document.getElementById('portServer').innerText = 'Failed to fetch port Server';
+            }
+        }
+
+        // Fetches and displays the internal port
+        async function displayInternalPort() {
+            try {
+                const portValue = document.getElementById('portInternal');
+                const response = await fetch('/internal/port-internal');
+                portValue.innerText = response.ok ? await response.text() : 'Failed to fetch';
+
+            } catch (error) {
+                displayError(error);
+                console.error('Error:', error);
+                document.getElementById('portInternal').innerText = 'Failed to fetch port Internal';
+            }
+        }
+
+        // Sets the href attributes of CSS and Bootstrap links dynamically
+        async function setLinks() {
+            try {
+                const response = await fetch('/internal/port-server');
+                const port = await response.text();
+
+                const cssLink = document.getElementById('cssLink');
+                cssLink.href = `http://localhost:${port}/css/main.css`;
+                console.log(cssLink.getAttribute('href'));
+
+                const bootstrapLink = document.getElementById('bootstrapLink');
+                bootstrapLink.href = `http://localhost:${port}/webjars/bootstrap/5.2.3/css/bootstrap.min.css`;
+                console.log(bootstrapLink.getAttribute('href'));
+
+            } catch (error) {
+                displayError(error);
+                console.error('Error:', error);
+            }
+        }
+
+        // Fetches and displays user data in a table
+        async function displayUsers() {
+            try {
+                const usersData = document.getElementById('usersData');
+                const response = await fetch('/internal/fetch-users');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch users');
+                }
+                const userData = await response.json();
+                usersData.innerHTML = ''; // Clear previous data
+                userData.forEach(user => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${user.id}</td>
+                        <td>${user.username}</td>
+                        <td>${user.birthDate}</td>
+                        <td>${user.email}</td>
+                        <td>${user.roles.map(role => role.roleName).join(', ')}</td>
+                    `;
+                    usersData.appendChild(row);
+                });
+            } catch (error) {
+                displayError(error);
+                console.error('Error:', error);
+                const errorRow = document.createElement('tr');
+                errorRow.innerHTML = `<td colspan="5">${error.message}</td>`;
+                document.getElementById('usersData').appendChild(errorRow);
+            }
+        }
+
+        // Function to display error messages
+        function displayError(error) {
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.innerText = error.message;
+            errorMessage.style.display = 'block';
+        }
+
+        // Event listener for the "Get Users" button
+        document.getElementById('getUsersBtn').addEventListener('click', async function () {
+            try {
+                await displayUsers();
+
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        // Call other functions on page load, but not displayUsers()
+        document.addEventListener('DOMContentLoaded', () => {
+
+            displayServerPort();
+            displayInternalPort();
+            setLinks();
+
+        });
+
+</script>
+
+<!-- Include JS library -->
+<script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

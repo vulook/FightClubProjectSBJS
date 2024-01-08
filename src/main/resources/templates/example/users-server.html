@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap and jQuery -->
+    <link rel="stylesheet" type="text/css" th:href="@{'/css/main.css'}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{'/webjars/bootstrap/5.2.3/css/bootstrap.min.css'}"/>
+
+    <title>Users</title>
+</head>
+
+<body>
+<div class="container">
+
+    <h2 class="mt-4 mb-4">Users from server: <span id="port"></span></h2>
+
+    <div class="border bg-white rounded-bottom">
+        <table class="table table-hover" id="tableUsers">
+            <thead class="table-dark">
+            <tr class="border-top align-middle" style="height: 50px">
+                <th>ID</th>
+                <th>NickName</th>
+                <th>BirthDate</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+            </thead>
+
+            <tbody id="usersData">
+            <!-- User data is inserted here -->
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+<script>
+
+    // Fetches and displays the server port
+    async function displayServerPort() {
+        try {
+            const portValue = document.getElementById('port');
+            const response = await fetch('/server/port');
+            portValue.innerText = response.ok ? await response.text() : 'Failed to fetch';
+        } catch (error) {
+            console.error('Error:', error);
+            document.getElementById('port').innerText = 'Failed to fetch port';
+        }
+    }
+
+    // Fetches and displays user data in a table
+    async function displayUsers() {
+        try {
+            const usersData = document.getElementById('usersData');
+            const response = await fetch('/server/users');
+            const userData = await response.json();
+            userData.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                            <td>${user.id}</td>
+                            <td>${user.username}</td>
+                            <td>${user.birthDate}</td>
+                            <td>${user.email}</td>
+                            <td>${user.roles.map(role => role.roleName).join(', ')}</td>
+                        `;
+                usersData.appendChild(row);
+            });
+        } catch (error) {
+            console.error('Error:', error);
+            const errorRow = document.createElement('tr');
+            errorRow.innerHTML = '<td colspan="5">Failed to fetch users</td>';
+            document.getElementById('usersData').appendChild(errorRow);
+        }
+    }
+
+    // Call the function
+    document.addEventListener('DOMContentLoaded', () => {
+        displayServerPort();
+        displayUsers();
+    });
+
+</script>
+
+</body>
+</html>

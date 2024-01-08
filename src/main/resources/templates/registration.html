@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap and jQuery -->
+<<<<<<< HEAD
+    <link rel="stylesheet" type="text/css" th:href="@{'/css/main.css'}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{'/webjars/bootstrap/5.2.3/css/bootstrap.min.css'}"/>
+
+=======
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css"/>
+>>>>>>> 1ce38dd (Initial commit)
+
+    <title>Registration</title>
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-custom" th:fragment="header">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="/img/fight-club-emblem.jpg" alt="Fight Club Logo" class="logo img-fluid">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="marquee-container-login">
+            <div class="marquee">
+                FIGHT CLUB PROJECT (SB+JS) ― а task for the Java Developer course from CyberBionic Systematics. Join our community of warriors and enthusiasts.
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<br />
+<br />
+<br />
+
+<div class="container">
+    <div class="row col-md-5 mx-auto">
+        <div class="card">
+
+            <div th:if="${param.success}">
+                <div class="alert alert-info" style="text-align: center;">
+                    You have successfully registered.
+                </div>
+            </div>
+
+            <div th:if="${param.success}">
+                <div class="alert alert-info" style="text-align: center;">
+                    Please check your email and follow the verification link.
+                    <br>
+                    The link will expire in 3 hours.
+                </div>
+            </div>
+
+<<<<<<< HEAD
+            <!-- Display error message -->
+=======
+            <!-- Display global error message -->
+>>>>>>> 1ce38dd (Initial commit)
+            <div th:if="${error}" class="alert alert-danger" style="text-align: center;">
+                <p th:text="${error}"></p>
+            </div>
+
+            <div class="card-header">
+                <h2 class="text-center">
+                    Registration Form
+                </h2>
+            </div>
+
+            <div class="card-body">
+                <form method="post" role="form" th:action="@{/registration}" th:object="${regUser}">
+
+                    <!-- Nickname Input -->
+                    <div class="form-group mb-3">
+                        <label class="form-label"><strong>NickName:</strong></label>
+                        <label for="username"></label>
+                        <input class="form-control"
+                                 id="username"
+                                 name="username"
+                                 placeholder="Enter your nickname"
+                                 th:field="*{username}"
+                                 type="text"
+                        />
+                        <p th:errors="*{username}" class="text-danger"
+                           th:if="${#fields.hasErrors('username')}">
+                        </p>
+                    </div>
+
+                    <!-- BirthDate Input -->
+                    <div class="form-group mb-3">
+                        <label class="form-label"><strong>Birth Date:</strong></label><br />
+                        <small class="form-text text-muted">
+                            To register, you must be at least 18 years old.
+                        </small>
+                        <label for="birthDate"></label>
+                        <input class="form-control"
+                                  id="birthDate"
+                                  name="birthDate"
+                                  placeholder="Enter birth Date"
+                                  th:field="*{birthDate}"
+                                  type="date"
+                        />
+                        <p th:errors="*{birthDate}" class="text-danger"
+                           th:if="${#fields.hasErrors('birthDate')}">
+                        </p>
+                    </div>
+
+                    <!-- Email Input -->
+                    <div class="form-group mb-3">
+                        <label class="form-label"><strong>Email:</strong></label>
+                        <label for="email"></label>
+                        <input class="form-control"
+                                  id="email"
+                                  name="email"
+                                  placeholder="Enter email address"
+                                  th:field="*{email}"
+                                  type="email"
+                        />
+                        <p th:errors="*{email}" class="text-danger"
+                           th:if="${#fields.hasErrors('email')}">
+                        </p>
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="form-group mb-3">
+                        <label class="form-label"><strong>Password:</strong></label>
+                        <label for="password"></label>
+                        <input class="form-control"
+                                 id="password"
+                                 name="password"
+                                 placeholder="Enter password"
+                                 th:field="*{password}"
+                                 type="password"
+                        />
+                        <p th:errors="*{password}" class="text-danger"
+                           th:if="${#fields.hasErrors('password')}">
+                        </p>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <button class="btn btn-primary" type="submit">Register</button>
+                        <span> Already registered? <a th:href="@{/login}">Login here</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<<<<<<< HEAD
+<!-- Include JS library -->
+<script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+
+=======
+>>>>>>> 1ce38dd (Initial commit)
+</body>
+</html>
