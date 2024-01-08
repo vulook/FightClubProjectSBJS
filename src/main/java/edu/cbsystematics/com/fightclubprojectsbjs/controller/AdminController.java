@@ -72,11 +72,8 @@ public class AdminController {
                                              @Validated @RequestBody User updatedUser,
                                              BindingResult result) {
 
-<<<<<<< HEAD
+
         logger.info("Received user ID: {} ", id);
-=======
-        logger.info("Received user ID: " + id);
->>>>>>> 1ce38dd (Initial commit)
 
         // Check if a user with the updated username already exists
         User usernameExisting = userService.findByUsername(updatedUser.getUsername());
@@ -105,11 +102,8 @@ public class AdminController {
     @DeleteMapping("/admin/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable("id") long id) {
         userService.deleteUser(id);
-<<<<<<< HEAD
         logger.info("Deleted user ID: {}", id);
-=======
-        logger.info("Deleted user ID: " + id);
->>>>>>> 1ce38dd (Initial commit)
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

@@ -2,11 +2,6 @@ package edu.cbsystematics.com.fightclubprojectsbjs.service;
 
 import edu.cbsystematics.com.fightclubprojectsbjs.exception.EmailSendingException;
 import edu.cbsystematics.com.fightclubprojectsbjs.model.Mail;
-<<<<<<< HEAD
-=======
-import edu.cbsystematics.com.fightclubprojectsbjs.model.User;
-import edu.cbsystematics.com.fightclubprojectsbjs.repository.UserRepository;
->>>>>>> 1ce38dd (Initial commit)
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +13,8 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-<<<<<<< HEAD
+
 import java.nio.charset.StandardCharsets;
-=======
-import javax.servlet.http.HttpServletRequest;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
->>>>>>> 1ce38dd (Initial commit)
 
 @Service
 public class EmailServiceImpl implements EmailService {

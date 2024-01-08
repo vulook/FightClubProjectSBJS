@@ -1,9 +1,7 @@
 package edu.cbsystematics.com.fightclubprojectsbjs.service;
 
-<<<<<<< HEAD
+
 import edu.cbsystematics.com.fightclubprojectsbjs.exception.ResourceNotFoundException;
-=======
->>>>>>> 1ce38dd (Initial commit)
 import edu.cbsystematics.com.fightclubprojectsbjs.model.Role;
 import edu.cbsystematics.com.fightclubprojectsbjs.model.User;
 import edu.cbsystematics.com.fightclubprojectsbjs.repository.RoleRepository;
@@ -86,7 +84,9 @@ public class UserServiceImp implements UserService{
 
         // Save the user in the database
         userRepository.save(user);
-        logger.info("User saved. ID: {}, Username: {}, Role: {}   ", user.getId(), user.getUsername(), user.getRoles().stream().map(Role::getRoleName).collect(Collectors.joining(", ")));
+
+        String roles = user.getRoles().stream().map(Role::getRoleName).collect(Collectors.joining(", "));
+        logger.info("User saved. ID: {}, Username: {}, Role: {}", user.getId(), user.getUsername(), roles);
 
         return user;
     }
@@ -113,15 +113,11 @@ public class UserServiceImp implements UserService{
                 logger.info("User {} already has role {}", user.getUsername(), roleToAdd.getRoleName());
             }
 
-<<<<<<< HEAD
+
         } catch (ResourceNotFoundException ex) {
             logger.error("Error adding role to user: {}", user.getUsername(), ex);
-=======
-        } catch (Exception ex) {
-            logger.error("Error adding role to user: {}", user.getUsername(), ex);
-            throw new RuntimeException("Failed to add role", ex);
->>>>>>> 1ce38dd (Initial commit)
         }
+
     }
 
     @Override
@@ -129,7 +125,7 @@ public class UserServiceImp implements UserService{
         try {
             // Retrieve the user to update
             User existingUser = userRepository.findById(userId)
-                    .orElseThrow(() -> new EntityNotFoundException("User not found"));
+                    .orElseThrow(() -> new EntityNotFoundException("User not found" + userId));
 
             // Check if the username has changed
             if (!existingUser.getUsername().equals(updatedUser.getUsername())) {
@@ -159,17 +155,11 @@ public class UserServiceImp implements UserService{
             userRepository.save(existingUser);
             logger.info("User data updated for user: {}", existingUser.getUsername());
 
-<<<<<<< HEAD
+
         } catch (ResourceNotFoundException ex) {
             logger.error("Error updating user data: {}", userId, ex);
         }
 
-=======
-        } catch (Exception ex) {
-            logger.error("Error updating user data: {}", userId, ex);
-            throw new RuntimeException("Failed to update user data", ex);
-        }
->>>>>>> 1ce38dd (Initial commit)
     }
 
     @Override

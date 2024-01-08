@@ -1,6 +1,5 @@
 package edu.cbsystematics.com.fightclubprojectsbjs.security;
 
-<<<<<<< HEAD
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.cbsystematics.com.fightclubprojectsbjs.internal.AnotherEndpointsFilter;
 import edu.cbsystematics.com.fightclubprojectsbjs.repository.UserRepository;
@@ -11,13 +10,6 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-=======
-import edu.cbsystematics.com.fightclubprojectsbjs.repository.UserRepository;
-import edu.cbsystematics.com.fightclubprojectsbjs.service.CustomUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
->>>>>>> 1ce38dd (Initial commit)
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,10 +17,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-<<<<<<< HEAD
+
 import org.springframework.web.client.RestTemplate;
-=======
->>>>>>> 1ce38dd (Initial commit)
 
 
 @Configuration
@@ -45,11 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         this.successUserHandler = successUserHandler;
     }
 
-<<<<<<< HEAD
     @Override
-=======
-    @Bean
->>>>>>> 1ce38dd (Initial commit)
     public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService(userRepository);
     }
@@ -80,13 +66,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "/registration",
-<<<<<<< HEAD
                         "/verify",
                         "/server/**",
                         "/internal/**").permitAll()
-=======
-                        "/verify").permitAll()
->>>>>>> 1ce38dd (Initial commit)
                 .antMatchers(
                         "/css/**",
                         "/img/**",
@@ -103,7 +85,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
     }
 
-<<<<<<< HEAD
+
     @Value("${server.anotherPort}")
     private int anotherPort;
 
@@ -123,7 +105,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         restTemplate.getMessageConverters().add(converter);
         return restTemplate;
     }
-=======
->>>>>>> 1ce38dd (Initial commit)
+
 
 }

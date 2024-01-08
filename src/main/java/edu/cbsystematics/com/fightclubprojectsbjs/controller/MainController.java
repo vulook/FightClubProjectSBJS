@@ -1,9 +1,6 @@
 package edu.cbsystematics.com.fightclubprojectsbjs.controller;
 
-<<<<<<< HEAD
 import edu.cbsystematics.com.fightclubprojectsbjs.internal.PortAggregator;
-=======
->>>>>>> 1ce38dd (Initial commit)
 import edu.cbsystematics.com.fightclubprojectsbjs.model.Mail;
 import edu.cbsystematics.com.fightclubprojectsbjs.model.User;
 import edu.cbsystematics.com.fightclubprojectsbjs.service.EmailService;
@@ -20,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 
 @Controller
@@ -29,27 +25,20 @@ public class MainController {
 
     private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
-<<<<<<< HEAD
-    private final PortAggregator portAggregator;
-
-=======
->>>>>>> 1ce38dd (Initial commit)
     private final UserService userService;
 
     private final EmailService emailService;
 
     private final EmailVerificationService verificationService;
 
+    private final PortAggregator portAggregator;
+
     @Autowired
-<<<<<<< HEAD
-    public MainController(PortAggregator portAggregator, UserService userService, EmailService emailService, EmailVerificationService verificationService) {
-        this.portAggregator = portAggregator;
-=======
-    public MainController(UserService userService, EmailService emailService, EmailVerificationService verificationService) {
->>>>>>> 1ce38dd (Initial commit)
+    public MainController(UserService userService, EmailService emailService, EmailVerificationService verificationService, PortAggregator portAggregator) {
         this.userService = userService;
         this.emailService = emailService;
         this.verificationService = verificationService;
+        this.portAggregator = portAggregator;
     }
 
     // This method maps the GET request to the "/fight-club" endpoint
@@ -63,7 +52,7 @@ public class MainController {
     public String getLogin(@RequestParam(value = "error", required = false) String error,
                            @RequestParam(value = "logout", required = false) String logout,
                            Model model) {
-<<<<<<< HEAD
+
 
         int serverPort = portAggregator.getServerPort();
         int anotherPort = portAggregator.getAnotherPort();
@@ -76,8 +65,6 @@ public class MainController {
         model.addAttribute("serverURL", serverURL);
         model.addAttribute("internalURL", internalURL);
         model.addAttribute("internalGetURL", internalGetURL);
-=======
->>>>>>> 1ce38dd (Initial commit)
         model.addAttribute("error", error != null);
         model.addAttribute("logout", logout != null);
         return "login";
@@ -91,10 +78,7 @@ public class MainController {
         return "registration";
     }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 1ce38dd (Initial commit)
     // This method maps the POST request to the "/registration"
     @PostMapping("/registration")
     public String registerNewUser(@Validated @ModelAttribute("regUser") User regUser,
@@ -148,8 +132,4 @@ public class MainController {
         return "redirect:/login";
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 1ce38dd (Initial commit)
 }

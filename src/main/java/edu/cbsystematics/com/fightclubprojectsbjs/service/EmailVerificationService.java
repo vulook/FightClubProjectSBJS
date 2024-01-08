@@ -19,11 +19,7 @@ import java.util.Map;
 @Service
 public class EmailVerificationService {
 
-<<<<<<< HEAD
     private static final Logger logger = LoggerFactory.getLogger(EmailVerificationService.class);
-=======
-    private static final Logger logger = LoggerFactory.getLogger(EmailServiceImpl.class);
->>>>>>> 1ce38dd (Initial commit)
 
     private final UserRepository userRepository;
 

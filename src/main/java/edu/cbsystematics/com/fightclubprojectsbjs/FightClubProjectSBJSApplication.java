@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 
-<<<<<<< HEAD
+
 /**
  * FileName: FightClubProjectSBJSApplication
  * Author:   Andriy V
@@ -19,8 +19,7 @@ import java.time.LocalDate;
  * Description:
  */
 
-=======
->>>>>>> 1ce38dd (Initial commit)
+
 @SpringBootApplication
 public class FightClubProjectSBJSApplication {
 

@@ -32,7 +32,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-<<<<<<< HEAD
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
@@ -41,11 +40,11 @@
             </exclusions>
         </dependency>
 
-=======
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
         </dependency>
 
-
->>>>>>> 1ce38dd (Initial commit)
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -88,16 +87,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-<<<<<<< HEAD
-            <artifactId>spring-boot-starter-jetty</artifactId>
-=======
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
->>>>>>> 1ce38dd (Initial commit)
         </dependency>
 
         <dependency>
@@ -145,10 +134,7 @@
 
     <build>
         <plugins>
-<<<<<<< HEAD
 
-=======
->>>>>>> 1ce38dd (Initial commit)
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -164,10 +150,7 @@
                     </excludes>
                 </configuration>
             </plugin>
-<<<<<<< HEAD
 
-=======
->>>>>>> 1ce38dd (Initial commit)
         </plugins>
     </build>
 
